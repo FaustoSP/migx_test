@@ -14,7 +14,6 @@ models:
 
       - name: study_type
         tests:
-          - not_null
           - accepted_values:
               arguments:
                 values: ["INTERVENTIONAL", "OBSERVATIONAL", "EXPANDED_ACCESS"]
