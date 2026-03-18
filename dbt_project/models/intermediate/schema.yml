@@ -1,0 +1,32 @@
+version: 2
+
+models:
+  - name: fact_study
+    columns:
+      - name: nct_id
+        tests:
+          - not_null
+          - unique
+
+  - name: dim_condition
+    columns:
+      - name: condition_name
+        tests:
+          - not_null
+          - unique
+
+  - name: dim_country
+    columns:
+      - name: country
+        tests:
+          - not_null
+          - unique
+
+  - name: bridge_study_condition
+    columns:
+      - name: nct_id
+        tests:
+          - not_null
+          - relationships:
+              to: ref('stg_study')
+              field: nct_id

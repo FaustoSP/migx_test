@@ -32,6 +32,7 @@ def _dbt_run(step: str, models: list[str]) -> None:
     if not result.success:
         raise RuntimeError(f"dbt run failed at step '{step}' — check logs above for details")
 
+
 # Downloading the entire dataset from the API takes a while, so I limited it to 10k for this test
 # I used AI here to help me with the syntax and debugging.
 def ingest():
@@ -102,6 +103,20 @@ def transform():
         "bridge_study_country",
     ])
 
+    # Future improvement: abstracting the _dbt_run so that it can run tests or models
+    # Ran our of time to implement it, but I wanted to make it clear that I know this is kind of dirty
+    # Usually I would run dbt integrated with airflow (astronomer) which makes handling tests a much cleaner affair
+    runner = dbtRunner()
+    result: dbtRunnerResult = runner.invoke(
+        [
+            "test",
+            "--project-dir", str(DBT_PROJECT_DIR),
+            "--profiles-dir", str(DBT_PROJECT_DIR),
+        ]
+    )
+    if not result.success:
+        raise RuntimeError("dbt tests failed — check logs above for details")
+
     logger.info("dbt transformations completed successfully")
 
 
@@ -120,7 +135,7 @@ def mart():
 # In a prod system the reports would be either be sent somewhere or saved as views
 # (materialized or otherwise) in a datawarehouse.
 def export():
-    logger.info("Extra step: exporting mart tables to CSV")
+    logger.info("Extra step: writting reports to CSV")
 
     OUTPUT_DIR.mkdir(exist_ok=True)
 
