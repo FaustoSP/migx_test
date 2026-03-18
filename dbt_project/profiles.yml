@@ -1,0 +1,8 @@
+# Connections and environment details file
+# Because I'm using a local file as a database, there is no need to worry about secrets and credentials
+migx:
+  target: dev
+  outputs:
+    dev:
+      type: duckdb
+      path: "warehouse.duckdb" # if you run main.py from a folder that isnt root, then the script wont find the database

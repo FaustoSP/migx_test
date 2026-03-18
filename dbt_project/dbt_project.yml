@@ -1,0 +1,21 @@
+name: migx
+version: "1.0.0"
+profile: migx
+
+model-paths: ["models"]
+seed-paths: ["seeds"]
+target-path: "target"
+clean-targets: ["target", "dbt_packages"]
+
+# For an assignment I leave every materialization as view. In a real system, if a report is queried a lot it can save on costs to materialize it as a table to avoid constant recalculations
+models:
+  migx:
+    staging:
+      +schema: staging
+      +materialized: view
+    intermediate:
+      +schema: intermediate
+      +materialized: view
+    marts:
+      +schema: marts
+      +materialized: view # table

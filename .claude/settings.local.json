@@ -1,0 +1,7 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(python -c \"from dbt.cli.main import dbtRunner; print\\(''ok''\\)\")"
+    ]
+  }
+}

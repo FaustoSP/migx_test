@@ -1,0 +1,6 @@
+data/
+warehouse.duckdb
+dbt_project/warehouse.duckdb
+dbt_project/target/
+dbt_project/logs/
+*.csv
