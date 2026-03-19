@@ -42,7 +42,7 @@ def ingest():
     if RAW_PATH.exists():
         logger.info("Raw file already exists, skipping fetch")
     else:
-        # There is no simple way to just write the data into duckdb, so I decided to simulate a data lake's landing zone
+        # There is no simple way to just write the data into duckdb, so I decided to simulate a data landing zone
         # and write the json as a physical local file, then load said json into duckdb.
         total = 0
         page_token = None
