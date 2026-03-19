@@ -104,7 +104,7 @@ def transform():
     ])
 
     # Future improvement: abstracting the _dbt_run so that it can run tests or models
-    # Ran our of time to implement it, but I wanted to make it clear that I know this is kind of dirty
+    # Ran out of time to implement it, but I wanted to make it clear that I know this is kind of dirty
     # Usually I would run dbt integrated with airflow (astronomer) which makes handling tests a much cleaner affair
     runner = dbtRunner()
     result: dbtRunnerResult = runner.invoke(
@@ -131,7 +131,7 @@ def mart():
 
     logger.info("dbt mart models completed successfully")
 
-# This table is just to show the result of the mart functions in this test
+# This function is just to show the result of the mart functions in this test
 # In a prod system the reports would be either be sent somewhere or saved as views
 # (materialized or otherwise) in a datawarehouse.
 def export():
